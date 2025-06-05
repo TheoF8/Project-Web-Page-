@@ -17,12 +17,12 @@
       <p> 
         As life expectancy increases further into old age, neuro-degenerative diseases such as Alzheimer’s are becoming a major health concern in the modern 
         all around the world. Early detection is crucial but interpreting complex brain scans is a demanding task. In our semester project, we investigated how 
-        deep learning, specifically Vector Quantized Variational Autoencoders (VQ-VAE), can help classify MRI and PET scans to detect Alzheimer's.
+        deep learning, specifically a robust encoder-only model, can help classify MRI and PET scans to detect Alzheimer's.
         Using the ADNI dataset, we trained our model to recognize the subtle patterns in brain images that correlate with the disease. Our approach combines 
         representation learning and image compression to extract key features from medical scans — and then uses them to power an Alzheimer’s classifier.
         This blog showcases our methodology, results, and key insights. We hope it demonstrates the potential of machine learning in advancing neuroimaging 
         and medical diagnosis. <br>
-        Below, we will present our findings regarding the use of Vq-Vae architecture in diagnosing Alzheimer disease.
+        Below, we will present our findings regarding the use of an encoder-only Transformer inspired by Vision Transformers (ViT) in diagnosing Alzheimer disease.
       </p>
     </article>
     
@@ -32,13 +32,17 @@
         We decided to use the ADNI database to train our model upon. The ADNI (Alzheimer's Disease Neuroimaging Initiative) database contains a plentitude of
         neurological brain scans from which we formed a cohort of specically MRI and PET scans tailored to our needs. <br>
         Before passing the imagery to our model, we have preprocessed it. Specifically, we have converted the dicom files into numpy array, normalized them and 
-        rendered them more accessible and uniform for processing. 
+        rendered them more accessible and uniform for processing. We also removed all non-tissue parts from the scans (e.g. skull, etc..) and prioritized mid-brain
+        regions abundant with grey matter. 
         <br>
-        We have decided to use a VQ-VAE (Vector Quantized Variational AutoEncoder) as our model for the following reasons. First, unlike the usual variantional 
-        autoencoders, VQ-VAE learns discrete latent codes instead of continuous ones. Discrete codes are more likely to capture important information in noisy 
-        imagery such as MRI and PET scans, thus enabling an easy ordering for future classification tasks. Also, as in this field reconstruction of images matters,
-        VQ-VAE tend to produce sharper, more precise reconstructed images than regular VAEs. Finally, in terms of memory space, medical imagery tends to be very 
-        voluminous and high-dimentional, something tackled by a the low-dimentiolnal latent vector representation used by VQ-VAE. 
+        Here is a brief overview of how our encoder-only Transformer is operating. <br>
+        First of all, all input images, genetic data, and clinical scores are tokenized and passed through a learnable embedding layer. To help the model distinguish 
+        between input types, we also added modality-specific embeddings, because MRI tokens can carry different identity information than PET or APOE tokens. <br>
+        Our core architecture consists of stacked self-attention blocks, each containing the following: a multi-head attention layer, feed-forward layers, residual 
+        connections and a normalization layer. We allow flexibility in configuration (depth, attention head size, MLP ratio) so the model can be tuned for performance 
+        vs. computational cost. <br>
+        Finally, after being normalized and passing through two GELU layers, the pooled feature vector is converted into a category (chosen between normal, MCI and AD)
+        by a softmax function. 
       </p>
     </article>
     
@@ -56,25 +60,24 @@
         of data samples (couple hundred) to work with. This means that our model wasn't trained to the extend that we wanted to. 
         <br> Another major issue was that 2D tokens do not include enough spatial information which is crucial for correct sample classification. We think that 
         using 3D customized VQ-VAE tokens would have greatly improved our results. 
-        <br> Finally, parameter tuning proved to be a source of errors as well.
-        VQ-VAE is very sensitive to the ledarning rate and codebook size; while adjusting those parameters helped us to improve mildly the results, we think 
-        that they might have still played an important role in the quality of our results. 
+        <br> Finally, the interpretability of transformer models remained unmastered, and the lack of diversity of the used dataset possibly prevented the model 
+        from learning robust, generalizable patterns.
       </p>
     </article>
     <article class="blog-post">
       <h2> Conclusion </h2>
       <p>
-        This project is a step toward harnessing the power of unsupervised learning in medical imaging. VQ-VAE allowed us to compress and analyze high-dimensional 
-        MRI and PET scans in a way that preserved disease-relevant patterns. Although we faced real challenges—like limited data and the complexity of brain 
-        changes—our work lays a foundation for future models that could assist in early Alzheimer’s diagnosis. With better data integration, more interpretability,
-        and continued model innovation, AI will increasingly become a valuable partner in neurodegenerative disease research.
+        Our modified Transformer encoder marks a shift from traditional convolutional approaches toward more flexible and scalable architectures for medical diagnosis. 
+        By unifying MRI, PET, genetic, and clinical data within a single attention-based framework, the model is able to learn richer, modality-aware representations 
+        that reflect the multifaceted nature of Alzheimer’s disease. While this approach is still in early stages, it demonstrates strong potential for handling complex 
+        biomedical inputs and opens the door to more interpretable, generalizable, and multi-modal diagnostic models in the future.
       </p>
     </article>
      
   </main>
   <footer>
     <p>&copy; 2025 semester project <br>
-      by Heeyoung Lee, Finn Macnamara and Fedor Mitirev
+      by Heeyoung Lee, Finn Mac Namara and Fedor Mitirev
     </p>
   </footer>
 </body>
