@@ -16,8 +16,8 @@
       <p class="date">May 29, 2025</p>
       <p> 
         As life expectancy increases further into old age, neuro-degenerative diseases such as Alzheimer’s are becoming a major health concern in the modern 
-        all around the world. Early detection is crucial but interpreting complex brain scans is a demanding task. In our semester project, we investigated how 
-        deep learning, specifically a robust encoder-only model, can help classify MRI and PET scans to detect Alzheimer's.
+         world. Early detection is crucial but interpreting complex brain scans is a demanding task. In our semester project, we investigated how 
+        deep learning, specifically a robust encoder-only Transformer, can help classify MRI and PET scans to detect Alzheimer's.
         Using the ADNI dataset, we trained our model to recognize the subtle patterns in brain images that correlate with the disease. Our approach combines 
         representation learning and image compression to extract key features from medical scans — and then uses them to power an Alzheimer’s classifier.
         This blog showcases our methodology, results, and key insights. We hope it demonstrates the potential of machine learning in advancing neuroimaging 
@@ -54,20 +54,23 @@
     </article>
 
     <article class="blog-post">
-      <h2> Posssible Improvements and Encountered Challenges </h2>
+      <h2> Encountered Challenges </h2>
       <p>
         We faced many challenges during the execution of this project. Namely, as described before, having chosen a specific cohort meant that we had not a lot
         of data samples (couple hundred) to work with. This means that our model wasn't trained to the extend that we wanted to. 
         <br> Another major issue was that 2D tokens do not include enough spatial information which is crucial for correct sample classification. We think that 
         using 3D customized VQ-VAE tokens would have greatly improved our results. 
         <br> Finally, the interpretability of transformer models remained unmastered, and the lack of diversity of the used dataset possibly prevented the model 
-        from learning robust, generalizable patterns.
+        from learning robust, generalizable patterns. 
+        
+        
       </p>
     </article>
     <article class="blog-post">
       <h2> Conclusion </h2>
       <p>
-        Our modified Transformer encoder marks a shift from traditional convolutional approaches toward more flexible and scalable architectures for medical diagnosis. 
+        In Conclusion, our modified Transformer encoder marks a shift from traditional convolutional approaches toward more flexible, multi-model architectures for 
+        medical diagnosis. 
         By unifying MRI, PET, genetic, and clinical data within a single attention-based framework, the model is able to learn richer, modality-aware representations 
         that reflect the multifaceted nature of Alzheimer’s disease. While this approach is still in early stages, it demonstrates strong potential for handling complex 
         biomedical inputs and opens the door to more interpretable, generalizable, and multi-modal diagnostic models in the future.
