@@ -35,23 +35,29 @@
       <p>
         We decided to use the ADNI database to train our model upon. The ADNI (Alzheimer's Disease Neuroimaging Initiative) database contains a plentitude of
         neurological brain scans from which we formed a cohort of specically MRI and PET scans tailored to our needs. <br>
-        Before passing the imagery to our model, we have preprocessed it. Specifically, we have converted the dicom files into numpy array, normalized them and ...
+        Before passing the imagery to our model, we have preprocessed it. Specifically, we have converted the dicom files into numpy array, normalized them and 
+        rendered them more accessible and uniform for processing. 
         <br>
-        We have decided to use a VQ-VAE (Vector Quantized Variational AutoEncoder) as our model for the following reasons.  
+        We have decided to use a VQ-VAE (Vector Quantized Variational AutoEncoder) as our model for the following reasons. First, unlike the usual variantional 
+        autoencoders, VQ-VAE learns discrete latent codes instead of continuous ones. Discrete codes are more likely to capture important information in noisy 
+        imagery such as MRI and PET scans, thus enabling an easy ordering for future classification tasks. Also, as in this field reconstruction of images matters,
+        VQ-VAE tend to produce sharper, more precise reconstructed images than regular VAEs. Finally, in terms of memory space, medical imagery tends to be very 
+        voluminous and high-dimentional, something tackled by a the low-dimentiolnal latent vector representation used by VQ-VAE. 
       </p>
     </article>
     
     <article class="blog-post">
       <h2> Results  </h2>
       <p>
-        Our model has achieved the following results: (link to graphs)  
+        Our model has achieved the following results: (link to graphs) 
       </p>
     </article>
 
     <article class="blog-post">
-      <h2> Posssible Improvements and Difficuties </h2>
+      <h2> Posssible Improvements and Faced Challenges </h2>
       <p>
-        We faced ... 
+        We faced many challenges durring the execution of this project. Namely, as described before, having chosen a specific cohort meant that we had not a lot
+        of data samples (couple hundred) to work with. This means that 
       </p>
     </article>
     <article class="blog-post">
@@ -60,11 +66,8 @@
        In conclusion... 
       </p>
     </article>
-    
-    
+     
   </main>
-  
-
   <footer>
     <p>&copy; 2025 semester project </p>
   </footer>
