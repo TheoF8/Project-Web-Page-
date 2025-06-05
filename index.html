@@ -8,10 +8,6 @@
 <body>
   <header>
     <h1>Using a 4M model to detect Alzheimer's Disease. </h1>
-    <nav>
-      <a href="#">Home</a>
-      <a href="#">About</a>
-    </nav>
   </header>
 
   <main>
@@ -57,7 +53,12 @@
       <h2> Posssible Improvements and Encountered Challenges </h2>
       <p>
         We faced many challenges during the execution of this project. Namely, as described before, having chosen a specific cohort meant that we had not a lot
-        of data samples (couple hundred) to work with. This means that our model wasn't trained to the extend that we wanted to. Also, we  
+        of data samples (couple hundred) to work with. This means that our model wasn't trained to the extend that we wanted to. 
+        <br> Another major issue was that 2D tokens do not include enough spatial information which is crucial for correct sample classification. We think that 
+        using 3D customized VQ-VAE tokens would have greatly improved our results. 
+        <br> Finally, parameter tuning proved to be a source of errors as well.
+        VQ-VAE is very sensitive to the ledarning rate and codebook size; while adjusting those parameters helped us to improve mildly the results, we think 
+        that they might have still played an important role in the quality of our results. 
       </p>
     </article>
     <article class="blog-post">
