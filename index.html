@@ -14,6 +14,7 @@
     <nav>
       <a href="#introduction">Introduction</a>
       <a href="#methodology">Methodology</a>
+      <a href="#baselines">Baseline Models</a>
       <a href="#results">Results</a>
       <a href="#challenges">Challenges</a>
       <a href="#conclusion">Conclusion</a>
@@ -150,6 +151,18 @@ class AdniClassifier(nn.Module):
       </details>
     </article>
     
+    <article id="baselines" class="blog-post animate">
+      <h2>Baseline Models</h2>
+      <div class="tags">
+        <span class="tag">3D CNN</span>
+        <span class="tag">Data Augmentation</span>
+        <span class="tag">Benchmarks</span>
+      </div>
+      <p>
+        Our baseline model is based on the work of Nhan and Nam, who proposed a 3D CNN architecture for Alzheimer's disease classification using structural MRI data with data augmentation techniques. Their model achieved an accuracy of 91.2 percent and an area under the curve (AUC) of 96.1 percent, demonstrating strong performance in distinguishing Alzheimer's patients from healthy controls. We use this as a reference point to evaluate the effectiveness of our proposed multi-modal Transformer-based approach.
+      </p>
+    </article>
+    
     <article id="results" class="blog-post animate">
       <h2>Results</h2>
       <div class="tags">
@@ -191,7 +204,7 @@ class AdniClassifier(nn.Module):
         using 3D customized VQ-VAE tokens would have greatly improved our results.</p>
       </div>
       <p>
-        Finally, the interpretability of transformer models remained unmastered, and the lack of diversity of the used dataset possibly prevented the model 
+        Finally, the interpretability of transformer models is challenging compared to more classical approavhes. 
         from learning robust, generalizable patterns.
       </p>
       <button class="btn" onclick="toggleSection('conclusion')">See Our Conclusions</button>
@@ -211,6 +224,11 @@ class AdniClassifier(nn.Module):
           Y. Zhu, F. Wang, P. Ning, Y. Zh et al., "Multimodal neuroimaging-based prediction of parkinson's disease with
           mild cognitive impairment using machine learning technique," NPJ Parkinson's Disease, 2024, published in partnership with
           the Parkinson's Foundation.
+        </li>
+        <li>
+          V. T. Nhan and H. B. Nam, "3D Brain MRI Classification for Alzheimer's Diagnosis Using CNN with Data Augmentation," 
+          in Proceedings of the International Conference on Artificial Intelligence and Data Science (ICAIDS), 
+          Ho Chi Minh City, Vietnam: IEEE, 2024.
         </li>
       </ol>
     </article>
