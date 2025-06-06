@@ -2,92 +2,273 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Communications Semester Project</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap">
   <link rel="stylesheet" href="style.css">
+  <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
 </head>
 <body>
   <header>
-    <h1>Using a 4M model to detect Alzheimer's Disease. </h1>
+    <h1>Using a 4M model to detect Alzheimer's Disease</h1>
+    <nav>
+      <a href="#project-description">Project Description</a>
+      <a href="#methodology">Methodology</a>
+      <a href="#results">Results</a>
+      <a href="#challenges">Challenges</a>
+      <a href="#conclusion">Conclusion</a>
+    </nav>
   </header>
 
   <main>
-    <article class="blog-post">
+    <article id="project-description" class="blog-post animate">
       <h2>Project Description</h2>
       <p class="date">May 29, 2025</p>
+      <div class="tags">
+        <span class="tag">Alzheimer's</span>
+        <span class="tag">Multimodal Learning</span>
+        <span class="tag">Medical Imaging</span>
+      </div>
       <p> 
-        As life expectancy increases further into old age, neuro-degenerative diseases such as Alzheimer’s are becoming a major health concern in the modern 
+        As life expectancy increases further into old age, neuro-degenerative diseases such as Alzheimer's are becoming a major health concern in the modern 
          world. Early detection is crucial but interpreting complex brain scans is a demanding task. In our semester project, we investigated how 
         deep learning, specifically a robust encoder-only Transformer, can help classify MRI and PET scans to detect Alzheimer's.
-        Using the ADNI dataset, we trained our model to recognize the subtle patterns in brain images that correlate with the disease. Our approach combines 
-        representation learning and image compression to extract key features from medical scans — and then uses them to power an Alzheimer’s classifier.
-        This blog showcases our methodology, results, and key insights. We hope it demonstrates the potential of machine learning in advancing neuroimaging 
-        and medical diagnosis. <br>
-        Below, we will present our findings regarding the use of an encoder-only Transformer inspired by Vision Transformers (ViT) in diagnosing Alzheimer disease.
       </p>
+      <div class="highlight">
+        <p><i class="fas fa-lightbulb"></i> Using the ADNI dataset, we trained our model to recognize the subtle patterns in brain images that correlate with the disease. Our approach combines 
+        representation learning and image compression to extract key features from medical scans — and then uses them to power an Alzheimer's classifier.</p>
+      </div>
+      <p>
+        This blog showcases our methodology, results, and key insights. We hope it demonstrates the potential of machine learning in advancing neuroimaging 
+        and medical diagnosis. Below, we will present our findings regarding the use of an encoder-only Transformer inspired by Vision Transformers (ViT) in diagnosing Alzheimer disease.
+      </p>
+      <button class="btn" onclick="toggleSection('methodology')">Read More About Our Methodology</button>
     </article>
     
-    <article class="blog-post">
-      <h2> Methodology and Data Used</h2>
+    <article id="methodology" class="blog-post animate">
+      <h2>Methodology and Data Used</h2>
+      <div class="tags">
+        <span class="tag">ADNI Database</span>
+        <span class="tag">MRI</span>
+        <span class="tag">PET Scans</span>
+        <span class="tag">Transformer</span>
+      </div>
       <p>
         We decided to use the ADNI database to train our model upon. The ADNI (Alzheimer's Disease Neuroimaging Initiative) database contains a plentitude of
-        neurological brain scans from which we formed a cohort of specically MRI and PET scans tailored to our needs. <br>
-        Before passing the imagery to our model, we have preprocessed it. Specifically, we have converted the dicom files into numpy array, normalized them and 
-        rendered them more accessible and uniform for processing. We also removed all non-tissue parts from the scans (e.g. skull, etc..) and prioritized mid-brain
-        regions abundant with grey matter. 
-        <br>
-        Here is a brief overview of how our encoder-only Transformer is operating. <br>
-        First of all, all input images, genetic data, and clinical scores are tokenized and passed through a learnable embedding layer. To help the model distinguish 
-        between input types, we also added modality-specific embeddings, because MRI tokens can carry different identity information than PET or APOE tokens. <br>
-        Our core architecture consists of stacked self-attention blocks, each containing the following: a multi-head attention layer, feed-forward layers, residual 
-        connections and a normalization layer. We allow flexibility in configuration (depth, attention head size, MLP ratio) so the model can be tuned for performance 
-        vs. computational cost. <br>
-        Finally, after being normalized and passing through two GELU layers, the pooled feature vector is converted into a category (chosen between normal, MCI and AD)
-        by a softmax function. 
+        neurological brain scans from which we formed a cohort of specically MRI and PET scans tailored to our needs.
       </p>
+      
+      <details>
+        <summary>Data Preprocessing Details</summary>
+        <p>
+          Before passing the imagery to our model, we have preprocessed it. Specifically, we have converted the dicom files into numpy array, normalized them and 
+          rendered them more accessible and uniform for processing. We also removed all non-tissue parts from the scans (e.g. skull, etc..) and prioritized mid-brain
+          regions abundant with grey matter.
+        </p>
+        <div class="preprocessing-images">
+          <figure>
+            <img src="mri_skull_removed.png" alt="MRI preprocessing steps" class="preprocessing-image">
+            <figcaption>Figure 1: MRI preprocessing showing removal of non-tissue parts</figcaption>
+          </figure>
+          <figure>
+            <img src="mr.png" alt="Multiple brain scan slices" class="preprocessing-image">
+            <figcaption>Figure 2: Multiple slices of processed brain scans</figcaption>
+          </figure>
+        </div>
+      </details>
+      
+      <h3>Model Architecture</h3>
+      <p>
+        Here is a brief overview of how our encoder-only Transformer is operating:
+      </p>
+      <ol>
+        <li>All input images, genetic data, and clinical scores are tokenized and passed through a learnable embedding layer.</li>
+        <li>To help the model distinguish between input types, we added modality-specific embeddings, because MRI tokens can carry different identity information than PET or APOE tokens.</li>
+        <li>Our core architecture consists of stacked self-attention blocks, each containing:
+          <ul>
+            <li>A multi-head attention layer</li>
+            <li>Feed-forward layers</li>
+            <li>Residual connections</li>
+            <li>A normalization layer</li>
+          </ul>
+        </li>
+        <li>We allow flexibility in configuration (depth, attention head size, MLP ratio) so the model can be tuned for performance vs. computational cost.</li>
+        <li>After being normalized and passing through two GELU layers, the pooled feature vector is converted into a category (chosen between normal, MCI and AD) by a softmax function.</li>
+      </ol>
+      
+      <details class="code-details">
+        <summary>View Model Implementation Code</summary>
+        <div class="code-container">
+          <div class="code-header">
+            <span class="code-filename">adni_classifier.py</span>
+            <button class="copy-btn" onclick="copyCode('code-adni')">Copy Code</button>
+          </div>
+          <pre><code id="code-adni" class="python">import torch.nn as nn
+import torch
+from modeling.transformer_layers import TransformerTrunk, LayerNorm
+
+class AdniClassifier(nn.Module):
+    def __init__(self, dim=512, depth=8, head_dim=64, mlp_ratio=4., num_classes=3):
+        super().__init__()
+        # Embeddings
+        self.enc_tok_emb = nn.Embedding(  # vocab_size should cover max token+1, e.g. 101
+            num_embeddings=101, embedding_dim=dim
+        )
+        self.enc_mod_emb = nn.Embedding(4, dim)   # MRI(0),PET(1),APOE(2),ADAS13(3)
+        self.pos_emb     = nn.Parameter(torch.randn(1, 64000, dim))  
+
+        # Encoder trunk
+        self.encoder = TransformerTrunk(dim=dim, depth=depth, head_dim=head_dim, mlp_ratio=mlp_ratio)
+
+        # Classification head
+        self.classifier = nn.Sequential(
+            LayerNorm(dim),
+            nn.Linear(dim, dim//2),
+            nn.GELU(),
+            nn.Linear(dim//2, num_classes)
+        )
+
+    def forward(self, enc_tokens, enc_mods, enc_pos, enc_mask):
+        # 1) Embedding
+        x = self.enc_tok_emb(enc_tokens) + self.enc_mod_emb(enc_mods) + self.pos_emb[:, enc_pos, :]
+        # 2) Encode
+        x = self.encoder(x, mask=enc_mask)
+        # 3) Mean-pool
+        feat = x.mean(dim=1)
+        # 4) Classify
+        return self.classifier(feat)
+</code></pre>
+        </div>
+      </details>
     </article>
     
-    <article class="blog-post">
-      <h2> Results  </h2>
+    <article id="results" class="blog-post animate">
+      <h2>Results</h2>
+      <div class="tags">
+        <span class="tag">Performance</span>
+        <span class="tag">Training</span>
+        <span class="tag">Evaluation</span>
+      </div>
       <p>
         Our model has obtained the following results:
-        <br>
-        <img src="train_result.png" alt="Training Graph" width="600">
-        <br><br>
-        <img src="eval_result.png" alt="Eval Graph" width="500">
+      </p>
+      <div class="image-container">
+        <figure>
+          <img src="train_result.png" alt="Training Graph" class="result-image">
+          <figcaption>Figure 3: Training performance showing loss decrease and accuracy improvement</figcaption>
+        </figure>
+        <figure>
+          <img src="eval_result.png" alt="Eval Graph" class="result-image">
+          <figcaption>Figure 4: Evaluation performance showing signs of overfitting</figcaption>
+        </figure>
+      </div>
+      <p>
         In the training dataset, the loss decreased and the performance improved, eventually converging toward 1. However, in the evaluation dataset, we observed an increase in loss and a drop in accuracy. 
         This suggests that overfitting occurred due to the limited amount of data available.
       </p>
     </article>
 
-    <article class="blog-post">
-      <h2> Encountered Challenges </h2>
+    <article id="challenges" class="blog-post animate">
+      <h2>Encountered Challenges</h2>
+      <div class="tags">
+        <span class="tag">Data Limitations</span>
+        <span class="tag">Spatial Information</span>
+        <span class="tag">Interpretability</span>
+      </div>
       <p>
         We faced many challenges during the execution of this project. Namely, as described before, having chosen a specific cohort meant that we had not a lot
-        of data samples (couple hundred) to work with. This means that our model wasn't trained to the extend that we wanted to. 
-        <br> Another major issue was that 2D tokens do not include enough spatial information which is crucial for correct sample classification. We think that 
-        using 3D customized VQ-VAE tokens would have greatly improved our results. 
-        <br> Finally, the interpretability of transformer models remained unmastered, and the lack of diversity of the used dataset possibly prevented the model 
-        from learning robust, generalizable patterns. 
-        
-        
+        of data samples (couple hundred) to work with. This means that our model wasn't trained to the extend that we wanted to.
       </p>
+      <div class="highlight">
+        <p><i class="fas fa-exclamation-triangle"></i> Another major issue was that 2D tokens do not include enough spatial information which is crucial for correct sample classification. We think that 
+        using 3D customized VQ-VAE tokens would have greatly improved our results.</p>
+      </div>
+      <p>
+        Finally, the interpretability of transformer models remained unmastered, and the lack of diversity of the used dataset possibly prevented the model 
+        from learning robust, generalizable patterns.
+      </p>
+      <button class="btn" onclick="toggleSection('conclusion')">See Our Conclusions</button>
     </article>
-    <article class="blog-post">
-      <h2> Conclusion </h2>
+
+    <article id="conclusion" class="blog-post animate">
+      <h2>Conclusion</h2>
+      <div class="tags">
+        <span class="tag">Future Work</span>
+        <span class="tag">Medical Diagnosis</span>
+        <span class="tag">AI</span>
+      </div>
       <p>
         In Conclusion, our modified Transformer encoder marks a shift from traditional convolutional approaches toward more flexible, multi-model architectures for 
         medical diagnosis. 
         By unifying MRI, PET, genetic, and clinical data within a single attention-based framework, the model is able to learn richer, modality-aware representations 
-        that reflect the multifaceted nature of Alzheimer’s disease. While this approach is still in early stages, it demonstrates strong potential for handling complex 
+        that reflect the multifaceted nature of Alzheimer's disease. While this approach is still in early stages, it demonstrates strong potential for handling complex 
         biomedical inputs and opens the door to more interpretable, generalizable, and multi-modal diagnostic models in the future.
       </p>
     </article>
      
   </main>
   <footer>
-    <p>&copy; 2025 semester project <br>
-      by Heeyoung Lee, Finn Mac Namara and Fedor Mitirev
-    </p>
+    <p>&copy; 2025 semester project</p>
+    <p>by Heeyoung Lee, Finn Mac Namara and Fedor Mitirev</p>
+    <div class="social-links">
+      <a href="#" class="social-link"><i class="fab fa-github"></i></a>
+      <a href="#" class="social-link"><i class="fab fa-linkedin"></i></a>
+      <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
+    </div>
   </footer>
+
+  <script>
+    // Add smooth scrolling for navigation links
+    document.querySelectorAll('nav a').forEach(anchor => {
+      anchor.addEventListener('click', function(e) {
+        e.preventDefault();
+        const targetId = this.getAttribute('href');
+        const targetElement = document.querySelector(targetId);
+        window.scrollTo({
+          top: targetElement.offsetTop - 80,
+          behavior: 'smooth'
+        });
+      });
+    });
+
+    // Function to toggle sections
+    function toggleSection(sectionId) {
+      const section = document.getElementById(sectionId);
+      section.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+
+    // Add animation when elements come into view
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        }
+      });
+    }, { threshold: 0.1 });
+
+    // Observe all animate elements
+    document.querySelectorAll('.animate').forEach(element => {
+      observer.observe(element);
+    });
+    
+    // Function to copy code to clipboard
+    function copyCode(elementId) {
+      const codeElement = document.getElementById(elementId);
+      const textArea = document.createElement('textarea');
+      textArea.value = codeElement.textContent;
+      document.body.appendChild(textArea);
+      textArea.select();
+      document.execCommand('copy');
+      document.body.removeChild(textArea);
+      
+      // Show feedback
+      const copyBtn = event.target;
+      const originalText = copyBtn.textContent;
+      copyBtn.textContent = 'Copied!';
+      setTimeout(() => {
+        copyBtn.textContent = originalText;
+      }, 2000);
+    }
+  </script>
 </body>
 </html>
