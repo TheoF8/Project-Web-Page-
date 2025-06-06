@@ -75,8 +75,7 @@
         <span class="tag">Transformer</span>
       </div>
       <p>
-        We decided to use the ADNI database to train our model upon. The ADNI (Alzheimer's Disease Neuroimaging Initiative) database contains a plentitude of
-        neurological brain scans from which we formed a cohort of specically MRI and PET scans tailored to our needs.
+        We used the ADNI (Alzheimer's Disease Neuroimaging Initiative) database to train our model. This comprehensive resource contains a wide range of neurological and clinical data. For our study, we selected a cohort that included structural MRI and PET scans, as well as cognitive test scores, APOE genotype information, and allelic variations relevant to Alzheimer's disease. This multi-modal dataset was tailored to capture both imaging and non-imaging biomarkers.
       </p>
       
       <details>
@@ -184,7 +183,7 @@ class AdniClassifier(nn.Module):
         </figure>
       </div>
       <p>
-        In the training dataset, the loss steadily decreased and performance improved, eventually converging toward near-perfect accuracy. However, on the evaluation dataset, we observed an increase in loss and a decline in accuracy, indicating clear signs of overfitting—likely due to the limited size of the available data. As a result, our model was unable to generalize effectivly and could not compete with our  baselines
+        In the training dataset, the loss steadily decreased and performance improved, eventually converging toward near-perfect accuracy. However, on the evaluation dataset, we observed an increase in loss and a decline in accuracy, indicating clear signs of overfitting, likely due to the limited size of the available data. As a result, our model was unable to generalize effectivly and could not compete with our  baselines
       </p>
     </article>
 
@@ -208,7 +207,7 @@ class AdniClassifier(nn.Module):
       </div>
       <h3>Model Interpretability</h3>
       <p>
-        The interpretability of transformer models presents a substantial challenge compared to more classical machine learning approaches. While our model demonstrated the ability to process multimodal inputs, the attention mechanisms and learned representations remain largely opaque "black boxes." This lack of interpretability poses significant barriers to clinical adoption, as healthcare professionals require transparent reasoning behind diagnostic suggestions. Future work should focus on developing visualization techniques and attribution methods specifically tailored to transformer-based medical image analysis to bridge this gap between performance and explainability.
+        The interpretability of transformer models presents a substantial challenge compared to more classical machine learning approaches. While our model demonstrated the ability to process multimodal inputs, the attention mechanisms and learned representations remain largely opaque "black boxes." This lack of interpretability poses significant barriers to clinical adoption, as healthcare professionals require transparent reasoning behind diagnostic suggestions. 
       </p>
      
       <button class="btn" onclick="toggleSection('conclusion')">See Our Conclusions</button>
