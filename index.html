@@ -13,10 +13,12 @@
     <h1>Using a 4M model to detect Alzheimer's Disease</h1>
     <nav>
       <a href="#project-description">Project Description</a>
+      <a href="#introduction">Introduction</a>
       <a href="#methodology">Methodology</a>
       <a href="#results">Results</a>
       <a href="#challenges">Challenges</a>
       <a href="#conclusion">Conclusion</a>
+      <a href="#references">References</a>
     </nav>
   </header>
 
@@ -43,6 +45,37 @@
         and medical diagnosis. Below, we will present our findings regarding the use of an encoder-only Transformer inspired by Vision Transformers (ViT) in diagnosing Alzheimer disease.
       </p>
       <button class="btn" onclick="toggleSection('methodology')">Read More About Our Methodology</button>
+    </article>
+    
+    <article id="introduction" class="blog-post animate">
+      <h2>Introduction</h2>
+      <div class="tags">
+        <span class="tag">Early Diagnosis</span>
+        <span class="tag">Multimodal Approach</span>
+        <span class="tag">Transformer Model</span>
+      </div>
+      <p>
+        Early diagnosis of neurological diseases like Alzheimer's improves treatment outcomes and reduces long-term impact.
+        Since real-world diagnosis is multi-modal, we propose using such an approach for improved detection, inspired by recent
+        cardiovascular disease research. We believe using a multi-input model like 4M will yield more accurate results in
+        Alzheimer's prediction.
+      </p>
+      <p>
+        The paper titled "Multimodal neuroimaging-based prediction of Parkinson's disease with mild cognitive impairment
+        using machine learning technique" explores how machine learning can predict mild cognitive impairment
+        in Parkinson's disease patients by integrating multiple data types.
+      </p>
+      <div class="image-container">
+        <figure>
+          <img src="svm.png" alt="SVM Architecture" class="result-image">
+          <figcaption>Figure 1: Previous approach using SVM for multimodal neuroimaging prediction</figcaption>
+        </figure>
+      </div>
+      <p>
+        However, aside from the actual disease, its architecture also differs substantially from our experimental design.
+        While the paper proposes an SVM model that requires handcrafted, domain-specific feature extraction, we use a
+        modified Transformer encoder that relies solely on end-to-end modeling.
+      </p>
     </article>
     
     <article id="methodology" class="blog-post animate">
@@ -192,11 +225,6 @@ class AdniClassifier(nn.Module):
 
     <article id="conclusion" class="blog-post animate">
       <h2>Conclusion</h2>
-      <div class="tags">
-        <span class="tag">Future Work</span>
-        <span class="tag">Medical Diagnosis</span>
-        <span class="tag">AI</span>
-      </div>
       <p>
         In Conclusion, our modified Transformer encoder marks a shift from traditional convolutional approaches toward more flexible, multi-model architectures for 
         medical diagnosis. 
@@ -205,7 +233,17 @@ class AdniClassifier(nn.Module):
         biomedical inputs and opens the door to more interpretable, generalizable, and multi-modal diagnostic models in the future.
       </p>
     </article>
-     
+    
+    <article id="references" class="blog-post animate">
+      <h2>References</h2>
+      <ol class="references-list">
+        <li>
+          Y. Zhu, F. Wang, P. Ning, Y. Zh et al., "Multimodal neuroimaging-based prediction of parkinson's disease with
+          mild cognitive impairment using machine learning technique," NPJ Parkinson's Disease, 2024, published in partnership with
+          the Parkinson's Foundation.
+        </li>
+      </ol>
+    </article>
   </main>
   <footer>
     <p>&copy; 2025 semester project</p>
