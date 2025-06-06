@@ -10,7 +10,7 @@
 </head>
 <body>
   <header>
-    <h1>Using a 4M model to detect Alzheimer's Disease</h1>
+    <h1>Building on 4M model to detect Alzheimer's Disease</h1>
     <nav>
       <a href="#introduction">Introduction</a>
       <a href="#baselines">Baseline Models</a>
@@ -47,7 +47,7 @@
       </div>
       <p>
         The paper titled "Multimodal neuroimaging-based prediction of Parkinson's disease with mild cognitive impairment
-        using machine learning technique" explores how machine learning can predict mild cognitive impairment
+        using machine learning technique"<a href="#references" class="reference-link"><sup>[1]</sup></a> explores how machine learning can predict mild cognitive impairment
         in Parkinson's disease patients by integrating multiple data types.
       </p>
       <p>
@@ -62,7 +62,7 @@
         </figure>
       </div>
       <p>
-        Our baseline model is based on the work of Nhan and Nam, who proposed a 3D CNN architecture for Alzheimer's disease classification using structural MRI data with data augmentation techniques. Their model achieved an accuracy of 91.2 percent and an area under the curve (AUC) of 96.1 percent, demonstrating strong performance in distinguishing Alzheimer's patients from healthy controls. We use this as a reference point to evaluate the effectiveness of our proposed multi-modal Transformer-based approach.
+        Our baseline model is based on the work of Nhan and Nam<a href="#references" class="reference-link"><sup>[2]</sup></a>, who proposed a 3D CNN architecture for Alzheimer's disease classification using structural MRI data with data augmentation techniques. Their model achieved an accuracy of 91.2 percent and an area under the curve (AUC) of 96.1 percent, demonstrating strong performance in distinguishing Alzheimer's patients from healthy controls. We use this as a reference point to evaluate the effectiveness of our proposed multi-modal Transformer-based approach.
       </p>
     </article>
     
@@ -209,8 +209,6 @@ class AdniClassifier(nn.Module):
       <p>
         The interpretability of transformer models presents a substantial challenge compared to more classical machine learning approaches. While our model demonstrated the ability to process multimodal inputs, the attention mechanisms and learned representations remain largely opaque "black boxes." This lack of interpretability poses significant barriers to clinical adoption, as healthcare professionals require transparent reasoning behind diagnostic suggestions. 
       </p>
-     
-      <button class="btn" onclick="toggleSection('conclusion')">See Our Conclusions</button>
     </article>
 
     <article id="conclusion" class="blog-post animate">
