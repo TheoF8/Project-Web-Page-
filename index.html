@@ -196,17 +196,21 @@ class AdniClassifier(nn.Module):
         <span class="tag">Interpretability</span>
       </div>
       <p>
-        We faced many challenges during the execution of this project. Namely, as described before, having chosen a specific cohort meant that we had not a lot
-        of data samples (couple hundred) to work with. This means that our model wasn't trained to the extend that we wanted to.
+        Throughout the implementation and evaluation of our multimodal transformer-based approach, we encountered several significant challenges that impacted the overall performance and generalizability of our model. These obstacles provide valuable insights for future research in this domain.
       </p>
-      <div class="highlight">
-        <p><i class="fas fa-exclamation-triangle"></i> Another major issue was that 2D tokens do not include enough spatial information which is crucial for correct sample classification. We think that 
-        using 3D customized VQ-VAE tokens would have greatly improved our results.</p>
-      </div>
+      <h3>Limited Dataset Size</h3>
       <p>
-        Finally, the interpretability of transformer models is challenging compared to more classical approaches. 
-        
+        The primary constraint we faced was the limited availability of high-quality, annotated neuroimaging data. Having selected a specific cohort from the ADNI database to maintain demographic and clinical homogeneity, we were restricted to working with only several hundred samples. This limitation substantially hindered our model's ability to learn robust representations across multiple modalities, as transformer architectures typically require large-scale datasets to achieve optimal performance. The scarcity of data led to overfitting issues that were evident in our evaluation metrics, despite implementing regularization techniques and data augmentation strategies.
       </p>
+      <h3>Spatial Information Representation</h3>
+      <div class="highlight">
+        <p><i class="fas fa-exclamation-triangle"></i> A critical technical challenge we identified was the inadequacy of 2D token representations in capturing the complex spatial relationships within neuroimaging data. The flattened 2D tokens failed to preserve the crucial three-dimensional structural information that is essential for accurate Alzheimer's disease classification. We hypothesize that implementing 3D customized Vector-Quantized Variational Autoencoder (VQ-VAE) tokens would significantly enhance the model's ability to extract and utilize spatial features, potentially leading to substantial improvements in diagnostic accuracy.</p>
+      </div>
+      <h3>Model Interpretability</h3>
+      <p>
+        The interpretability of transformer models presents a substantial challenge compared to more classical machine learning approaches. While our model demonstrated the ability to process multimodal inputs, the attention mechanisms and learned representations remain largely opaque "black boxes." This lack of interpretability poses significant barriers to clinical adoption, as healthcare professionals require transparent reasoning behind diagnostic suggestions. Future work should focus on developing visualization techniques and attribution methods specifically tailored to transformer-based medical image analysis to bridge this gap between performance and explainability.
+      </p>
+     
       <button class="btn" onclick="toggleSection('conclusion')">See Our Conclusions</button>
     </article>
 
