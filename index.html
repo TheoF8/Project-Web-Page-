@@ -25,9 +25,9 @@
     <article id="introduction" class="blog-post animate">
       <h2>Introduction</h2>
       <div class="tags">
-        <span class="tag">Early Diagnosis</span>
-        <span class="tag">Multimodal Approach</span>
-        <span class="tag">Transformer Model</span>
+        <span class="tag">Alzheimer's</span>
+        <span class="tag">Multimodal Learning</span>
+
       </div>
       <p>
         Early diagnosis of neurological diseases like Alzheimer's improves treatment outcomes and reduces long-term impact.
@@ -171,8 +171,7 @@ class AdniClassifier(nn.Module):
         </figure>
       </div>
       <p>
-        In the training dataset, the loss decreased and the performance improved, eventually converging toward 1. However, in the evaluation dataset, we observed an increase in loss and a drop in accuracy. 
-        This suggests that overfitting occurred due to the limited amount of data available.
+        In the training dataset, the loss steadily decreased and performance improved, eventually converging toward near-perfect accuracy. However, on the evaluation dataset, we observed an increase in loss and a decline in accuracy, indicating clear signs of overfitting—likely due to the limited size of the available data. As a result, our model was unable to generalize effectivly and could not compete with our  baselines
       </p>
     </article>
 
